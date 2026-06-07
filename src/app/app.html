@@ -1,0 +1,405 @@
+<!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
+<nav class="navbar" [class.scrolled]="scrolled()">
+  <div class="nav-container">
+    <div class="nav-brand" (click)="scrollTo('accueil')">
+      <span class="brand-g">GEST</span><span class="brand-r">RESTO</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a (click)="scrollTo('fonctionnalites')" [class.active]="activeSection() === 'fonctionnalites'">Fonctionnalités</a></li>
+      <li><a (click)="scrollTo('application')" [class.active]="activeSection() === 'application'">Application</a></li>
+      <li><a (click)="scrollTo('tarifs')" [class.active]="activeSection() === 'tarifs'">Tarifs</a></li>
+      <li><a (click)="scrollTo('captures')" [class.active]="activeSection() === 'captures'">Captures</a></li>
+      <li><a (click)="scrollTo('contact')" [class.active]="activeSection() === 'contact'">Contact</a></li>
+    </ul>
+
+    <a href="https://admin.gestresto.app" target="_blank" class="btn-admin">Espace Admin</a>
+
+    <button class="burger" (click)="mobileMenuOpen.set(!mobileMenuOpen())" aria-label="Menu">
+      @if (mobileMenuOpen()) {
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      } @else {
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      }
+    </button>
+  </div>
+</nav>
+
+<!-- Bottom sheet mobile — en dehors de la navbar pour éviter tout conflit de stacking context -->
+<div class="menu-backdrop" [class.visible]="mobileMenuOpen()" (click)="mobileMenuOpen.set(false)"></div>
+
+<div class="mobile-sheet" [class.open]="mobileMenuOpen()">
+  <div class="sheet-handle"></div>
+  <ul>
+    <li><a (click)="scrollTo('fonctionnalites')" [class.active]="activeSection() === 'fonctionnalites'">Fonctionnalités</a></li>
+    <li><a (click)="scrollTo('application')" [class.active]="activeSection() === 'application'">Application</a></li>
+    <li><a (click)="scrollTo('tarifs')" [class.active]="activeSection() === 'tarifs'">Tarifs</a></li>
+    <li><a (click)="scrollTo('captures')" [class.active]="activeSection() === 'captures'">Captures</a></li>
+    <li><a (click)="scrollTo('contact')" [class.active]="activeSection() === 'contact'">Contact</a></li>
+    <li class="sheet-cta">
+      <a href="https://admin.gestresto.app" target="_blank">Espace Admin →</a>
+    </li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<section class="hero" id="accueil">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+
+  <div class="hero-container">
+    <div class="hero-text">
+      <span class="hero-badge">Plateforme de gestion restaurant</span>
+
+      <h1 class="hero-title">
+        Gérez votre restaurant<br />
+        avec <span class="title-gradient">GestResto</span>
+      </h1>
+
+      <p class="hero-desc">
+        GestResto centralise la gestion de votre restaurant et se connecte à
+        <strong>RestCom</strong>, l'application mobile utilisée par vos serveurs et vos clients
+        pour commander, livrer et réserver.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://admin.gestresto.app" target="_blank" class="btn-primary">
+          Accéder à GestResto
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <button class="btn-secondary" (click)="scrollTo('application')">Découvrir RestCom</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><strong>GestResto</strong><span>Espace admin web</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><strong>RestCom</strong><span>Application mobile</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><strong>Gratuit</strong><span>Pour démarrer</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="phone-wrap">
+        <img src="mockups/food1-front.png" alt="Application RestCom" class="phone-img" />
+        <div class="phone-glow"></div>
+      </div>
+      <div class="hero-chips">
+        <span class="chip">Sur place</span>
+        <span class="chip">Livraison</span>
+        <span class="chip">Réservation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FEATURES ══════════════════════════════ -->
+<section class="features" id="fonctionnalites">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-badge">Fonctionnalités</span>
+      <h2>Tout ce dont votre restaurant a besoin</h2>
+      <p>Une plateforme complète pour digitaliser et optimiser votre activité</p>
+    </div>
+
+    <div class="features-grid">
+      @for (feat of features; track feat.title) {
+        <div class="feat-card">
+          <div class="feat-icon-wrap" [style.background-color]="feat.color + '18'" [style.color]="feat.color">
+            <span [innerHTML]="icons[feat.iconKey]"></span>
+          </div>
+          <h3 class="feat-title">{{ feat.title }}</h3>
+          <p class="feat-desc">{{ feat.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ APPLICATION / ROLES ══════════════════════════════ -->
+<section class="roles" id="application">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-badge">Application mobile</span>
+      <h2>GestResto + RestCom</h2>
+      <p>Deux outils complémentaires, un seul écosystème</p>
+    </div>
+
+    <!-- Écosystème -->
+    <div class="ecosystem">
+      <div class="eco-block">
+        <div class="eco-name">GestResto</div>
+        <div class="eco-etymology">
+          <span>Gest</span> = Gestion &nbsp;·&nbsp; <span>Resto</span> = Restaurant
+        </div>
+        <p>Tableau de bord web pour gérer votre restaurant : menus, commandes, Livraisons, équipe et statistiques.</p>
+      </div>
+      <div class="eco-arrow">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3"/><path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/><line x1="12" y1="8" x2="12" y2="16"/><polyline points="8 12 12 8 16 12"/></svg>
+        <span>connecté à</span>
+      </div>
+      <div class="eco-block">
+        <div class="eco-name restcom">RestCom</div>
+        <div class="eco-etymology">
+          <span>Rest</span> = Restaurant &nbsp;·&nbsp; <span>Com</span> = Commande
+        </div>
+        <p>Application mobile pour serveurs et clients : commander, livrer, réserver.</p>
+      </div>
+    </div>
+
+    <h3 class="roles-subtitle">3 rôles, des accès distincts</h3>
+
+    <div class="roles-grid">
+      @for (r of roles; track r.role) {
+        <div class="role-card">
+          <div class="role-header" [style.background]="r.bg">
+            <span class="role-icon" [style.color]="r.bg" [innerHTML]="icons[r.iconKey]"></span>
+            <div class="role-title-wrap">
+              <h3>{{ r.role }}</h3>
+              <p>{{ r.subtitle }}</p>
+            </div>
+          </div>
+          <div class="role-body">
+            <div class="access-badge" [style.background]="r.light" [style.color]="r.bg">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              {{ r.access }}
+            </div>
+            <p class="role-detail">{{ r.detail }}</p>
+
+            @if (r.scenarios.length > 0) {
+              <div class="role-scenarios">
+                @for (s of r.scenarios; track s.label; let i = $index) {
+                  <div class="scenario" [style.border-left-color]="r.bg">
+                    <div class="scenario-label" [style.color]="r.bg">Option {{ i + 1 }} — {{ s.label }}</div>
+                    <p>{{ s.desc }}</p>
+                  </div>
+                }
+              </div>
+            } @else {
+              <ul class="role-points">
+                @for (p of r.points; track p) {
+                  <li>
+                    <span class="pt-check" [style.color]="r.bg">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    {{ p }}
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="download-banner">
+      <div class="dl-text">
+        <strong>RestCom — Application mobile Android</strong>
+        <span>Contactez-nous pour obtenir l'accès à la plateforme ou télécharger l'APK</span>
+      </div>
+      <button class="btn-dl" (click)="scrollTo('contact')">Obtenir l'accès</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PRICING ══════════════════════════════ -->
+<section class="pricing" id="tarifs">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-badge">Tarifs</span>
+      <h2>Des formules adaptées à chaque restaurant</h2>
+      <p>Choisissez la durée d'engagement qui vous convient. Tarifs en FCFA.</p>
+    </div>
+
+    <!-- ── Pour 1 restaurant ── -->
+    <div class="pricing-group">
+      <div class="group-header">
+        <h3 class="group-title">Pour 1 restaurant</h3>
+      </div>
+      <div class="plans-grid">
+        @for (plan of pricingSingle; track plan.name) {
+          <div class="plan-card" [class.plan-highlight]="plan.highlight">
+            @if (plan.tag) {
+              <div class="plan-tag" [class.plan-tag-hi]="plan.highlight">{{ plan.tag }}</div>
+            }
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <div class="plan-price">
+              <span class="price-val">{{ plan.price }}</span>
+              <span class="price-curr">FCFA</span>
+            </div>
+            <p class="plan-period">{{ plan.period }}</p>
+            @if (plan.maintenance) {
+              <div class="maintenance-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                + {{ plan.maintenance }} de maintenance
+              </div>
+            }
+            <p class="plan-desc">{{ plan.desc }}</p>
+            <button class="plan-btn" [class.plan-btn-hi]="plan.highlight" (click)="scrollTo('contact')">Nous contacter</button>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- ── Pour plusieurs restaurants ── -->
+    <div class="pricing-group">
+      <div class="group-header">
+        <h3 class="group-title">Pour plusieurs restaurants</h3>
+        <span class="group-tag">Économies garanties</span>
+      </div>
+      <p class="group-desc">Réductions appliquées automatiquement dès le 2e restaurant.</p>
+      <div class="plans-grid">
+        @for (plan of pricingMulti; track plan.name) {
+          <div class="plan-card plan-card-multi" [class.plan-highlight]="plan.highlight">
+            @if (plan.highlight) {
+              <div class="plan-tag plan-tag-hi">Recommandé</div>
+            }
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <div class="reduction-display">
+              <span class="reduction-val">{{ plan.reduction }}</span>
+            </div>
+            <p class="reduction-detail">{{ plan.detail }}</p>
+            <div class="price-example">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              {{ plan.example }}
+            </div>
+            @if (plan.maintenance) {
+              <div class="maintenance-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                + {{ plan.maintenance }} de maintenance
+              </div>
+            }
+            <button class="plan-btn" [class.plan-btn-hi]="plan.highlight" (click)="scrollTo('contact')">Nous contacter</button>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SCREENSHOTS ══════════════════════════════ -->
+<section class="screenshots" id="captures">
+  <div class="section-container">
+    <div class="section-header light">
+      <span class="section-badge light-badge">Captures d'écran</span>
+      <h2>RestCom en images</h2>
+      <p>Interface intuitive et moderne — disponible sur Android</p>
+    </div>
+
+    <div class="shots-grid">
+      @for (s of screenshots; track s.src) {
+        <div class="shot-wrap">
+          <div class="shot-img-wrap">
+            <img [src]="s.src" [alt]="s.label" class="shot-img" />
+          </div>
+          <p class="shot-label">{{ s.label }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CONTACT ══════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-badge">Contact</span>
+      <h2>Prêt à digitaliser votre restaurant ?</h2>
+      <p>Contactez-nous pour une démonstration ou toute question sur la plateforme</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info">
+        @for (info of contactInfos; track info.label) {
+          <div class="info-card">
+            <div class="info-icon-wrap" [innerHTML]="icons[info.iconKey]"></div>
+            <div>
+              <strong>{{ info.label }}</strong>
+              @if (info.href) {
+                <a [href]="info.href" target="_blank">{{ info.value }}</a>
+              } @else {
+                <p>{{ info.value }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <form class="contact-form" (ngSubmit)="submitForm()">
+        @if (formSent()) {
+          <div class="form-success">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            <h3>Message envoyé</h3>
+            <p>Nous vous contacterons dans les plus brefs délais.</p>
+          </div>
+        } @else {
+          <div class="form-row">
+            <div class="form-group">
+              <label>Votre nom *</label>
+              <input type="text" [(ngModel)]="contactForm.name" name="name" placeholder="Entrer votre nom complet" />
+            </div>
+            <div class="form-group">
+              <label>Email ou téléphone *</label>
+              <input type="text" [(ngModel)]="contactForm.contact" name="contact" placeholder="+226 XX XX XX XX" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Nom du restaurant</label>
+            <input type="text" [(ngModel)]="contactForm.restaurant" name="restaurant" placeholder="Entrer le nom de votre restaurant" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea [(ngModel)]="contactForm.message" name="message" rows="4" placeholder="Décrivez votre besoin..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-w">
+            Envoyer
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        }
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="brand-g">GEST</span><span class="brand-r">RESTO</span>
+      </div>
+      <p>Plateforme de gestion restaurant connectée à RestCom, l'application mobile pour serveurs et clients.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Plateforme</h4>
+      <ul>
+        <li><a href="https://admin.gestresto.app" target="_blank">GestResto Admin</a></li>
+        <li><a href="https://menu.gestresto.app" target="_blank">RestCom Menu</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Application</h4>
+      <ul>
+        <li><a (click)="scrollTo('fonctionnalites')">Fonctionnalités</a></li>
+        <li><a (click)="scrollTo('application')">Rôles utilisateurs</a></li>
+        <li><a (click)="scrollTo('captures')">Captures d'écran</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a (click)="scrollTo('tarifs')">Tarifs</a></li>
+        <li><a (click)="scrollTo('contact')">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GestResto. Tous droits réservés.</p>
+    <p>Développé par Rim</p>
+  </div>
+</footer>
