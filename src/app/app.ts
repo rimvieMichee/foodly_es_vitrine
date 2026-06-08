@@ -108,7 +108,7 @@ export class App {
   pricingSingle = [
     {
       name: 'À vie',
-      price: '1 200 000',
+      price: '1 500 000',
       period: 'paiement unique',
       maintenance: '50 000 FCFA / an',
       tag: '',
@@ -117,7 +117,7 @@ export class App {
     },
     {
       name: 'Annuel',
-      price: '150 000',
+      price: '300 000',
       period: 'par an',
       maintenance: '50 000 FCFA / an',
       tag: 'Recommandé',
@@ -126,7 +126,7 @@ export class App {
     },
     {
       name: 'Mensuel',
-      price: '20 000',
+      price: '30 000',
       period: 'par mois',
       maintenance: null,
       tag: 'Sans engagement',
@@ -140,7 +140,7 @@ export class App {
       name: 'À vie',
       reduction: '-30%',
       detail: 'sur le prix cumulé des abonnements',
-      example: 'Ex. 2 restaurants : 1 680 000 FCFA',
+      example: 'Ex. 2 restaurants : 2 100 000 FCFA',
       maintenance: '75 000 FCFA / an',
       highlight: false,
     },
@@ -148,7 +148,7 @@ export class App {
       name: 'Annuel',
       reduction: '-30%',
       detail: 'sur le prix cumulé des abonnements',
-      example: 'Ex. 2 restaurants : 210 000 FCFA / an',
+      example: 'Ex. 2 restaurants : 420 000 FCFA / an',
       maintenance: '75 000 FCFA / an',
       highlight: true,
     },
@@ -156,7 +156,7 @@ export class App {
       name: 'Mensuel',
       reduction: '-5 000 FCFA',
       detail: 'de réduction par restaurant / mois',
-      example: 'Soit 15 000 FCFA / restaurant / mois',
+      example: 'Soit 25 000 FCFA / restaurant / mois',
       maintenance: null,
       highlight: false,
     },
