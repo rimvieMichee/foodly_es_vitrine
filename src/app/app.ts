@@ -18,6 +18,7 @@ export class App {
   scrolled = signal(false);
   activeSection = signal('accueil');
   formSent = signal(false);
+  formError = signal(false);
 
   contactForm = { name: '', contact: '', restaurant: '', message: '' };
 
@@ -195,21 +196,29 @@ export class App {
 
   submitForm() {
     if (!this.contactForm.name || !this.contactForm.contact) return;
+    this.formError.set(false);
 
     const body = new URLSearchParams({
       'form-name': 'contact',
+      'bot-field': '',
       name: this.contactForm.name,
       contact: this.contactForm.contact,
       restaurant: this.contactForm.restaurant,
       message: this.contactForm.message,
     }).toString();
 
-    fetch('/', {
+    fetch('https://gestresto.app/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
     })
-      .then(() => this.formSent.set(true))
-      .catch(() => this.formSent.set(true));
+      .then(res => {
+        if (res.ok) {
+          this.formSent.set(true);
+        } else {
+          this.formError.set(true);
+        }
+      })
+      .catch(() => this.formError.set(true));
   }
 }

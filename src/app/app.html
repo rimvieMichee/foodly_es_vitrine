@@ -440,6 +440,12 @@
             <label>Message</label>
             <textarea [(ngModel)]="contactForm.message" name="message" rows="4" placeholder="Décrivez votre besoin..."></textarea>
           </div>
+          @if (formError()) {
+            <div class="form-error">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Une erreur s'est produite. Réessayez ou contactez-nous par WhatsApp.
+            </div>
+          }
           <button type="submit" class="btn-primary full-w">
             Envoyer
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
