@@ -172,7 +172,7 @@ export class App {
 
   contactInfos = [
     { iconKey: 'mail', label: 'Email', value: 'equipe.gestresto@gmail.com', href: null },
-    { iconKey: 'message', label: 'WhatsApp', value: '+226 57 08 46 42', href: null },
+    { iconKey: 'message', label: 'WhatsApp', value: '+226 57 08 46 42', href: 'https://wa.me/22657084642' },
   ];
 
   @HostListener('window:scroll')
