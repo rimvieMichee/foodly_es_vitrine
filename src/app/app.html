@@ -434,7 +434,7 @@
           <div class="form-row">
             <div class="form-group">
               <label>Email</label>
-              <input type="email" [(ngModel)]="contactForm.email" name="email" placeholder="exemple@email.com"
+              <input type="email" [(ngModel)]="contactForm.email" name="email" placeholder="Entrer votre adresse email"
                 [class.field-invalid]="formSubmitted() && ((contactForm.email && !isValidEmail(contactForm.email)) || (!contactForm.email && !contactForm.phone))" />
               @if (formSubmitted() && contactForm.email && !isValidEmail(contactForm.email)) {
                 <span class="field-error-msg">Email invalide</span>
@@ -442,7 +442,7 @@
             </div>
             <div class="form-group">
               <label>Téléphone</label>
-              <input type="tel" [(ngModel)]="contactForm.phone" name="phone" placeholder="+226 XX XX XX XX"
+              <input type="tel" [(ngModel)]="contactForm.phone" name="phone" placeholder="Entrer votre numéro de téléphone"
                 (input)="sanitizePhone($event)"
                 [class.field-invalid]="formSubmitted() && ((contactForm.phone && !isValidPhone(contactForm.phone)) || (!contactForm.email && !contactForm.phone))" />
               @if (formSubmitted() && contactForm.phone && !isValidPhone(contactForm.phone)) {
@@ -494,7 +494,6 @@
       <h4>Plateforme</h4>
       <ul>
         <li><a href="https://admin.gestresto.app" target="_blank">GestResto Admin</a></li>
-        <li><a href="https://menu.gestresto.app" target="_blank">RestCom Menu</a></li>
       </ul>
     </div>
 
@@ -518,6 +517,6 @@
 
   <div class="footer-bottom">
     <p>© 2026 GestResto. Tous droits réservés.</p>
-    <p>Développé par l'équipe de GestResto</p>
+    <p>Développé par l'équipe GestResto</p>
   </div>
 </footer>
