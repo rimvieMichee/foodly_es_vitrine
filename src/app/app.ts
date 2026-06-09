@@ -178,7 +178,7 @@ export class App {
   @HostListener('window:scroll')
   onScroll() {
     this.scrolled.set(window.scrollY > 60);
-    const ids = ['accueil', 'fonctionnalites', 'application', 'tarifs', 'captures', 'contact'];
+    const ids = ['accueil', 'demo', 'fonctionnalites', 'application', 'tarifs', 'captures', 'contact'];
     for (let i = ids.length - 1; i >= 0; i--) {
       const el = document.getElementById(ids[i]);
       if (el && window.scrollY >= el.offsetTop - 120) {
