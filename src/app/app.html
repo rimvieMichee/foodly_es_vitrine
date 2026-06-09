@@ -425,11 +425,19 @@
           <div class="form-row">
             <div class="form-group">
               <label>Votre nom *</label>
-              <input type="text" [(ngModel)]="contactForm.name" name="name" placeholder="Entrer votre nom complet" />
+              <input type="text" [(ngModel)]="contactForm.name" name="name" placeholder="Entrer votre nom complet"
+                [class.field-invalid]="formSubmitted() && !contactForm.name" />
+              @if (formSubmitted() && !contactForm.name) {
+                <span class="field-error-msg">Ce champ est requis</span>
+              }
             </div>
             <div class="form-group">
               <label>Email ou téléphone *</label>
-              <input type="text" [(ngModel)]="contactForm.contact" name="contact" placeholder="+226 XX XX XX XX" />
+              <input type="text" [(ngModel)]="contactForm.contact" name="contact" placeholder="+226 XX XX XX XX"
+                [class.field-invalid]="formSubmitted() && !contactForm.contact" />
+              @if (formSubmitted() && !contactForm.contact) {
+                <span class="field-error-msg">Ce champ est requis</span>
+              }
             </div>
           </div>
           <div class="form-group">
@@ -448,7 +456,6 @@
           }
           <button type="submit" class="btn-primary full-w">
             Envoyer
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         }
       </form>

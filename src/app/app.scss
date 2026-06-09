@@ -542,7 +542,15 @@ $shadow-lg: 0 12px 40px rgba(0,0,0,.11);
     transition: border-color .2s, box-shadow .2s; resize: vertical;
     &::placeholder { color: #9ca3af; }
     &:focus { outline: none; border-color: $indigo-mid; box-shadow: 0 0 0 3px rgba($indigo-mid,.1); }
+    &.field-invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, .1);
+    }
   }
+}
+
+.field-error-msg {
+  font-size: .775rem; color: #ef4444; font-weight: 500; margin-top: -.25rem;
 }
 
 .form-success {

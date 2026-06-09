@@ -19,6 +19,7 @@ export class App {
   activeSection = signal('accueil');
   formSent = signal(false);
   formError = signal(false);
+  formSubmitted = signal(false);
 
   contactForm = { name: '', contact: '', restaurant: '', message: '' };
 
@@ -170,10 +171,8 @@ export class App {
   ];
 
   contactInfos = [
-    { iconKey: 'mail', label: 'Email', value: 'contact@gestresto.app', href: null },
+    { iconKey: 'mail', label: 'Email', value: 'equipe.gestresto@gmail.com', href: null },
     { iconKey: 'message', label: 'WhatsApp', value: '+226 57 08 46 42', href: null },
-    { iconKey: 'globe', label: 'Espace Admin', value: 'admin.gestresto.app', href: 'https://admin.gestresto.app' },
-    { iconKey: 'scan', label: 'Menu QR Code', value: 'menu.gestresto.app', href: 'https://menu.gestresto.app' },
   ];
 
   @HostListener('window:scroll')
@@ -195,6 +194,7 @@ export class App {
   }
 
   submitForm() {
+    this.formSubmitted.set(true);
     if (!this.contactForm.name || !this.contactForm.contact) return;
     this.formError.set(false);
 
