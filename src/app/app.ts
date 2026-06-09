@@ -21,7 +21,7 @@ export class App {
   formError = signal(false);
   formSubmitted = signal(false);
 
-  contactForm = { name: '', contact: '', restaurant: '', message: '' };
+  contactForm = { name: '', email: '', phone: '', restaurant: '', message: '' };
 
   icons: Record<string, SafeHtml> = {
     smartphone: this.s(`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`),
@@ -193,18 +193,35 @@ export class App {
     this.mobileMenuOpen.set(false);
   }
 
+  isValidEmail(v: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  }
+
+  isValidPhone(v: string) {
+    return /^[+\d][\d\s\-(). ]{5,}$/.test(v.trim());
+  }
+
+  sanitizePhone(e: Event) {
+    const el = e.target as HTMLInputElement;
+    const clean = el.value.replace(/[^0-9+\s\-(). ]/g, '');
+    if (el.value !== clean) { el.value = clean; this.contactForm.phone = clean; }
+  }
+
   submitForm() {
     this.formSubmitted.set(true);
-    if (!this.contactForm.name || !this.contactForm.contact) return;
+    const { name, email, phone, restaurant, message } = this.contactForm;
+    const emailFilled = email.trim().length > 0;
+    const phoneFilled = phone.trim().length > 0;
+    if (!name.trim() || !message.trim()) return;
+    if (!emailFilled && !phoneFilled) return;
+    if (emailFilled && !this.isValidEmail(email)) return;
+    if (phoneFilled && !this.isValidPhone(phone)) return;
     this.formError.set(false);
 
     const body = new URLSearchParams({
       'form-name': 'contact',
       'bot-field': '',
-      name: this.contactForm.name,
-      contact: this.contactForm.contact,
-      restaurant: this.contactForm.restaurant,
-      message: this.contactForm.message,
+      name, email, phone, restaurant, message,
     }).toString();
 
     fetch('/', {
