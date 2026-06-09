@@ -138,40 +138,27 @@ $shadow-lg: 0 12px 40px rgba(0,0,0,.11);
 
 .demo-scenario {
   margin-top: .25rem; margin-bottom: 2.5rem;
-  padding: 1.25rem 1.5rem;
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: 1rem 1.25rem;
   background: rgba(255,255,255,.07);
   border: 1px solid rgba(255,255,255,.12);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
+  border-radius: 14px;
 }
 
-.scenario-intro {
-  font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.75);
-  margin-bottom: .875rem; text-transform: uppercase; letter-spacing: .05em;
-}
-
-.scenario-steps {
-  list-style: none; padding: 0; margin: 0;
-  counter-reset: step;
-  display: flex; flex-direction: column; gap: .875rem;
-
-  li {
-    display: flex; gap: .875rem; align-items: flex-start;
-    font-size: .9rem; color: rgba(255,255,255,.72); line-height: 1.6;
-    counter-increment: step;
-
-    &::before {
-      content: counter(step);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      width: 24px; height: 24px; border-radius: 50%;
-      background: rgba(165,180,252,.25); border: 1px solid rgba(165,180,252,.4);
-      color: #a5b4fc; font-size: .75rem; font-weight: 700;
-      margin-top: .15rem;
-    }
-
-    strong { color: $white; font-weight: 600; }
+.scenario-step {
+  display: flex; gap: .625rem; align-items: flex-start; flex: 1;
+  .s-num {
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(165,180,252,.25); border: 1px solid rgba(165,180,252,.4);
+    color: #a5b4fc; font-size: .7rem; font-weight: 700;
   }
+  strong { display: block; color: $white; font-size: .875rem; font-weight: 600; margin-bottom: .2rem; }
+  p { color: rgba(255,255,255,.6); font-size: .78rem; line-height: 1.55; margin: 0; }
+}
+
+.scenario-arrow {
+  color: rgba(255,255,255,.25); font-size: 1.1rem; padding-top: .15rem; flex-shrink: 0;
 }
 
 .btn-primary {
@@ -633,7 +620,8 @@ $shadow-lg: 0 12px 40px rgba(0,0,0,.11);
   .hero-container { flex-direction: column; padding: 3rem 1.5rem; text-align: center; }
   .hero-actions { justify-content: center; }
   .demo-wrap { align-items: center; }
-  .demo-scenario { text-align: left; }
+  .demo-scenario { flex-direction: column; gap: .875rem; }
+  .scenario-arrow { display: none; }
   .hero-stats { justify-content: center; }
   .hero-visual { display: none; }
 
