@@ -20,5 +20,13 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <!-- Formulaire statique requis pour la détection Netlify Forms au build -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="text" name="contact" />
+    <input type="text" name="restaurant" />
+    <textarea name="message"></textarea>
+  </form>
 </body>
 </html>

@@ -194,8 +194,22 @@ export class App {
   }
 
   submitForm() {
-    if (this.contactForm.name && this.contactForm.contact) {
-      this.formSent.set(true);
-    }
+    if (!this.contactForm.name || !this.contactForm.contact) return;
+
+    const body = new URLSearchParams({
+      'form-name': 'contact',
+      name: this.contactForm.name,
+      contact: this.contactForm.contact,
+      restaurant: this.contactForm.restaurant,
+      message: this.contactForm.message,
+    }).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    })
+      .then(() => this.formSent.set(true))
+      .catch(() => this.formSent.set(true));
   }
 }
