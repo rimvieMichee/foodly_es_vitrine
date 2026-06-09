@@ -136,30 +136,55 @@ $shadow-lg: 0 12px 40px rgba(0,0,0,.11);
   .cred-sep { color: rgba(255,255,255,.3); }
 }
 
-.demo-scenario {
-  margin-top: .25rem; margin-bottom: 2.5rem;
-  display: flex; align-items: flex-start; gap: .75rem;
-  padding: 1rem 1.25rem;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 14px;
+// ── Hero demo band ────────────────────────────────────────────────────────────
+.hero-demo {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 2rem;
 }
 
-.scenario-step {
-  display: flex; gap: .625rem; align-items: flex-start; flex: 1;
-  .s-num {
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
-    background: rgba(165,180,252,.25); border: 1px solid rgba(165,180,252,.4);
+.hero-demo-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 2rem;
+}
+
+.hd-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); white-space: nowrap;
+  padding-right: 2rem; border-right: 1px solid rgba(255,255,255,.1); flex-shrink: 0;
+}
+
+.hd-steps { display: flex; align-items: stretch; gap: 1rem; flex: 1; }
+
+.hd-step {
+  display: flex; gap: .875rem; align-items: flex-start; flex: 1;
+  padding: 1.25rem; border-radius: 14px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  transition: background .2s;
+  &:hover { background: rgba(255,255,255,.1); }
+
+  &--accent { background: rgba(165,180,252,.08); border-color: rgba(165,180,252,.2); }
+
+  .hd-num {
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(165,180,252,.2); border: 1px solid rgba(165,180,252,.35);
     color: #a5b4fc; font-size: .7rem; font-weight: 700;
   }
-  strong { display: block; color: $white; font-size: .875rem; font-weight: 600; margin-bottom: .2rem; }
-  p { color: rgba(255,255,255,.6); font-size: .78rem; line-height: 1.55; margin: 0; }
 }
 
-.scenario-arrow {
-  color: rgba(255,255,255,.25); font-size: 1.1rem; padding-top: .15rem; flex-shrink: 0;
+.hd-content {
+  strong { display: block; color: $white; font-size: .875rem; font-weight: 600; margin-bottom: .375rem; }
+  p { color: rgba(255,255,255,.55); font-size: .8rem; line-height: 1.55; margin: 0 0 .625rem; }
+  code {
+    display: inline-block;
+    background: rgba(165,180,252,.12); border: 1px solid rgba(165,180,252,.2);
+    color: #a5b4fc; font-size: .75rem; padding: .2rem .625rem; border-radius: 6px;
+    letter-spacing: .02em;
+  }
 }
+
+.hd-arrow { color: rgba(255,255,255,.2); flex-shrink: 0; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -620,8 +645,11 @@ $shadow-lg: 0 12px 40px rgba(0,0,0,.11);
   .hero-container { flex-direction: column; padding: 3rem 1.5rem; text-align: center; }
   .hero-actions { justify-content: center; }
   .demo-wrap { align-items: center; }
-  .demo-scenario { flex-direction: column; gap: .875rem; }
-  .scenario-arrow { display: none; }
+  .hero-demo { padding: 1.5rem; }
+  .hero-demo-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .hd-label { border-right: none; padding-right: 0; }
+  .hd-steps { flex-direction: column; }
+  .hd-arrow { display: none; }
   .hero-stats { justify-content: center; }
   .hero-visual { display: none; }
 
