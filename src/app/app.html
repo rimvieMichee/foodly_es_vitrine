@@ -13,8 +13,6 @@
       <li><a (click)="scrollTo('contact')" [class.active]="activeSection() === 'contact'">Contact</a></li>
     </ul>
 
-    <a href="https://admin.gestresto.app" target="_blank" class="btn-admin">Espace Admin</a>
-
     <button class="burger" (click)="mobileMenuOpen.set(!mobileMenuOpen())" aria-label="Menu">
       @if (mobileMenuOpen()) {
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -37,7 +35,7 @@
     <li><a (click)="scrollTo('captures')" [class.active]="activeSection() === 'captures'">Captures</a></li>
     <li><a (click)="scrollTo('contact')" [class.active]="activeSection() === 'contact'">Contact</a></li>
     <li class="sheet-cta">
-      <a href="https://admin.gestresto.app" target="_blank">Espace Admin →</a>
+      <a href="https://admin.gestresto.app" target="_blank">Effectuer un test →</a>
     </li>
   </ul>
 </div>
@@ -63,11 +61,50 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://admin.gestresto.app" target="_blank" class="btn-primary">
-          Accéder à GestResto
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <button class="btn-secondary" (click)="scrollTo('application')">Découvrir RestCom</button>
+        <div class="demo-wrap">
+          <a href="https://admin.gestresto.app" target="_blank" class="btn-primary">
+            Effectuer un test
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="demo-creds">
+            <span>N° <strong>72000000</strong></span>
+            <span class="cred-sep">·</span>
+            <span>MDP <strong>12345678</strong></span>
+          </div>
+        </div>
+
+        <div class="demo-wrap">
+          <a href="/Restcom.apk" download class="btn-secondary">
+            Découvrir RestCom
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+          <div class="demo-creds">
+            <span>N° <strong>78000000</strong></span>
+            <span class="cred-sep">·</span>
+            <span>MDP <strong>12345678</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-scenario">
+        <p class="scenario-intro">Pour vivre l'expérience complète, suivez ce parcours :</p>
+        <ol class="scenario-steps">
+          <li>
+            <strong>Connectez-vous à GestResto</strong> avec les identifiants administrateur
+            (N° 72000000 / MDP 12345678). Depuis le tableau de bord, ajoutez vos produits
+            et catégories, créez le compte de votre serveur et générez un QR code unique pour une table.
+          </li>
+          <li>
+            <strong>Installez RestCom</strong> et connectez-vous avec les identifiants serveur
+            (N° 78000000 / MDP 12345678). Passez une commande sur place via QR code,
+            effectuez une réservation de table ou simulez une commande en livraison.
+          </li>
+          <li>
+            <strong>Observez la synchronisation en temps réel</strong> : chaque commande,
+            réservation ou livraison déclenchée depuis RestCom apparaît instantanément
+            dans votre tableau de bord GestResto.
+          </li>
+        </ol>
       </div>
 
       <div class="hero-stats">
