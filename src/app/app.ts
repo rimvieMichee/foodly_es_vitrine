@@ -207,18 +207,12 @@ export class App {
       message: this.contactForm.message,
     }).toString();
 
-    fetch('https://gestresto.app/', {
+    fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
     })
-      .then(res => {
-        if (res.ok) {
-          this.formSent.set(true);
-        } else {
-          this.formError.set(true);
-        }
-      })
+      .then(() => this.formSent.set(true))
       .catch(() => this.formError.set(true));
   }
 }
